@@ -47,12 +47,14 @@ SRC_C += $(SDK_ROOT)/retarget/retarget.c
 SRC_C += $(SDK_ROOT)/retarget/uart_stdout.c
 SRC_C += $(SYSTEM_FILE)
 SRC_C += main.c
+SRC_C += $(SDK_ROOT)/lib/delay_systick.c
 
 
 # 添加需要的头文件目录
 INC += -I$(CORE_DIR)
 INC += -I$(DEVICE_DIR)/Include
 INC += -I$(SDK_ROOT)/retarget
+INC += -I$(SDK_ROOT)/lib
 
 
 # 添加全局宏定义
