@@ -4,9 +4,10 @@ SDK_ROOT = ../sdk
 # Program file
 TESTNAME	= ces
 
-# 设置gcc，可以使用绝对路径
-CROSS_COMPILE_PATH ?= 
+# 设置gcc，可以使用绝对路径, 最后需要加 ’/’
+CROSS_COMPILE_PATH ?= ~/opt/gcc-arm-none-eabi-10.3-2021.07/bin/
 CROSS_COMPILE ?= $(CROSS_COMPILE_PATH)arm-none-eabi-
+
 
 CC := $(CROSS_COMPILE)gcc
 CXX := $(CROSS_COMPILE)g++
