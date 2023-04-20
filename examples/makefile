@@ -48,12 +48,14 @@ SRC_C += $(SDK_ROOT)/retarget/uart_stdout.c
 SRC_C += $(SYSTEM_FILE)
 SRC_C += main.c
 SRC_C += $(SDK_ROOT)/lib/delay_systick.c
+SRC_C += $(SDK_ROOT)/Peripherals/Source/ens001_gpio.c
 
 
 # 添加需要的头文件目录
 INC += -I$(CORE_DIR)
 INC += -I$(DEVICE_DIR)/Include
 INC += -I$(SDK_ROOT)/retarget
+INC += -I$(SDK_ROOT)/Peripherals/Include
 INC += -I$(SDK_ROOT)/lib
 
 
@@ -75,7 +77,7 @@ all: ${BUILD_DIR}
 $(BUILD_DIR):
 	$(CMD_ECHO) mkdir -p $(BUILD_DIR)
 
-flash:
+flash: all
 	JLinkExe ./jlink_flash.conf -nogui 1
 
 # ---------------------------------------------------------------------------------------

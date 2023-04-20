@@ -36,10 +36,10 @@ void UartStdOutInit(void)
 #ifndef UART1_DRIVE
   CMSDK_UART0->DLL = 15;
 	CMSDK_UART0->DLH = 0;
-  CMSDK_GPIO->ALTFL = (1<<6);
+  ENS001_GPIO->ALTFL = (1<<6);
 #else
   CMSDK_UART1->DLL = 0x0;
-  CMSDK_GPIO->ALTFL = (1<<26);
+  ENS001_GPIO->ALTFL = (1<<26);
 #endif
   return;
 }

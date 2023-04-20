@@ -39,6 +39,16 @@ extern "C"
     @{
   */
 
+/* bit operations */
+#define REG32(addr)                  (*(volatile uint32_t *)(uint32_t)(addr))
+#define REG16(addr)                  (*(volatile uint16_t *)(uint32_t)(addr))
+#define REG8(addr)                   (*(volatile uint8_t *)(uint32_t)(addr))
+#ifndef BIT
+#define BIT(x)                       ((uint32_t)((uint32_t)0x01U<<(x)))
+#endif
+#define BITS(start, end)             ((0xFFFFFFFFUL << (start)) & (0xFFFFFFFFUL >> (31U - (uint32_t)(end)))) 
+#define GET_BITS(regval, start, end) (((regval) & BITS((start),(end))) >> (start))
+
   /******************************************************************************/
   /*                Processor and Core Peripherals                              */
   /******************************************************************************/
@@ -914,7 +924,7 @@ extern "C"
 
   /*-------------------- General Purpose Input Output (GPIO) -------------------*/
 
-  /** @addtogroup CMSDK_GPIO CMSDK GPIO
+  /** @addtogroup ENS001_GPIO CMSDK GPIO
     @{
   */
   typedef struct
@@ -935,15 +945,15 @@ extern "C"
     __IO uint32_t ALTFL;   /*!< Offset: 0x034 Alternate function select Register  (R/W) */
     __IO uint32_t ALTFH;   /*!< Offset: 0x038 Alternate function select Register  (R/W) */
     __IO uint32_t ANAEN;   /*!< Offset: 0x03C Analog Channel Enable Register  (R/W) */
-  } CMSDK_GPIO_TypeDef;
+  } ENS001_GPIO_TypeDef;
 
-#define CMSDK_GPIO_DATA_Pos 0                                   /*!< CMSDK_GPIO DATAIN: DATAIN Position */
-#define CMSDK_GPIO_DATA_Msk (0xFFFFFFul << CMSDK_GPIO_DATA_Pos) /*!< CMSDK_GPIO DATAIN: DATAIN Mask */
+#define ENS001_GPIO_DATA_Pos 0                                   /*!< ENS001_GPIO DATAIN: DATAIN Position */
+#define ENS001_GPIO_DATA_Msk (0xFFFFFFul << ENS001_GPIO_DATA_Pos) /*!< ENS001_GPIO DATAIN: DATAIN Mask */
 
-#define CMSDK_GPIO_DATAOUT_Pos 0                                      /*!< CMSDK_GPIO DATAOUT: DATAOUT Position */
-#define CMSDK_GPIO_DATAOUT_Msk (0xFFFFFFul << CMSDK_GPIO_DATAOUT_Pos) /*!< CMSDK_GPIO DATAOUT: DATAOUT Mask */
+#define ENS001_GPIO_DATAOUT_Pos 0                                      /*!< ENS001_GPIO DATAOUT: DATAOUT Position */
+#define ENS001_GPIO_DATAOUT_Msk (0xFFFFFFul << ENS001_GPIO_DATAOUT_Pos) /*!< ENS001_GPIO DATAOUT: DATAOUT Mask */
 
-  /*@}*/ /* end of group CMSDK_GPIO */
+  /*@}*/ /* end of group ENS001_GPIO */
 
   /*------------- System Control (SYSCON) --------------------------------------*/
   /** @addtogroup CMSDK_SYSCON CMSDK System Control
@@ -1452,7 +1462,7 @@ extern "C"
 
 /* AHB peripherals                                                           */
 #define CMSDK_SYSCTRL_BASE (CMSDK_AHB_BASE + 0x0000UL)
-#define CMSDK_GPIO_BASE (CMSDK_AHB_BASE + 0x1000UL)
+#define ENS001_GPIO_BASE (CMSDK_AHB_BASE + 0x1000UL)
 #define CMSDK_EXTI_BASE (CMSDK_AHB_BASE + 0x2000UL)
 #define CMSDK_MTPREG_BASE (CMSDK_AHB_BASE + 0x3000UL)
   /*@}*/ /* end of group CMSDK_MemoryMap */
@@ -1500,7 +1510,7 @@ extern "C"
 #define CMSDK_RTC ((CMSDK_RTC_TypeDef *)CMSDK_RTC_BASE)
 
 #define CMSDK_SYSCON ((CMSDK_SYSCON_TypeDef *)CMSDK_SYSCTRL_BASE)
-#define CMSDK_GPIO ((CMSDK_GPIO_TypeDef *)CMSDK_GPIO_BASE)
+#define ENS001_GPIO ((ENS001_GPIO_TypeDef *)ENS001_GPIO_BASE)
 #define CMSDK_EXTI ((CMSDK_EXTI_TypeDef *)CMSDK_EXTI_BASE)
 #define CMSDK_MTPREG ((CMSDK_MTPREG_TypeDef *)CMSDK_MTPREG_BASE)
   /*@}*/ /* end of group CMSDK_PeripheralDecl */
